@@ -8,7 +8,7 @@ webserver:
     - memcached:memcached
     - redis:redis
     - elasticsearch:elasticsearch
-    - rabbitmq:rabbitmq
+    - beanstalkd:beanstalkd
   volumes_from:
     - apidata
     - admindata
@@ -17,8 +17,6 @@ webserver:
 apidata:
   image: busybox
   volumes:
-    - "/var/www/api/app/cache"
-    - "/var/www/api/app/logs"
     - "sites/api/api.conf:/etc/nginx/sites-enabled/api.conf"
     - "www/api/:/var/www/api/"
 
@@ -39,7 +37,7 @@ mysql:
   ports:
     - "3306:3306"
   environment:
-    MYSQL_PASS: password
+    MYSQL_PASS: "password"
     ON_CREATE_DB: "apidb"
 
 mongodb:
@@ -50,13 +48,10 @@ mongodb:
   environment:
     MONGODB_PASS: password
 
-rabbitmq:
-  image: tutum/rabbitmq
-  ports:
-    - "5672:5672"
-    - "15672:15672"
-  environment:
-    RABBITMQ_PASS: password
+beanstalkd:
+  image: chriskite/beanstalkd
+  ports: 
+    - "11300:11300"
 
 memcached:
   image: tutum/memcached
