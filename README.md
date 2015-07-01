@@ -21,4 +21,4 @@ Set up your vhosts:
 192.168.59.103 frontend.test.com
 ```
 
-Visit http://ewanvalentine.io/running-angularjs-and-symfony-projects-on-docker/ for more info. 
+Visit http://ewanvalentine.io/running-laravel-and-angularjs-on-docker/ for more info. 
