@@ -1,7 +1,5 @@
-webserver:
-  build: images/webserver
-  ports:
-    - "80:80"
+worker:
+  build: images/phpfpm
   links:
     - mysql:mysql
     - mongodb:mongodb
@@ -11,9 +9,33 @@ webserver:
     - beanstalkd:beanstalkd
   volumes_from:
     - apidata
+  ports:
+    - "9000:9000"
+
+webserver:
+  build: images/webserver
+  ports:
+    - "80:80"
+  links:
+    - worker:worker
+  volumes_from:
+    - apidata
     - admindata
     - frontenddata
 
+composer:
+  build: images/composer
+  volumes_from:
+    - apidata
+
+artisan:
+  build: images/artisan
+  links:
+    - worker:worker
+    - mysql:mysql
+  volumes_from:
+    - apidata
+  
 apidata:
   image: busybox
   volumes:

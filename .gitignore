@@ -1,5 +1,1 @@
-.vagrant
-bodge.sh
-rigger.sh
-Vagrantfile
-.editorconfig
+.DS_STORE

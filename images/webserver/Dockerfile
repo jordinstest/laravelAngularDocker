@@ -19,34 +19,24 @@ RUN rm -rf /etc/apt/sources.list.d/proposed.list
 RUN apt-get update && \
   apt-get install -y \
   curl \
-  wget \
-  php5-fpm \
-  php5-mysql \
-  php5-mcrypt \
-  php5-gd \
-  php5-memcached \
-  php5-curl \
-  php5-xdebug
+  wget
 
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
+ADD nginx.conf /opt/etc/nginx.conf
 
 # Create required directories
 RUN mkdir -p /etc/nginx && \
-    mkdir -p /var/run/php5-fpm && \
     mkdir -p /etc/nginx/sites-enabled && \
     mkdir -p /var/log/nginx
 
 RUN rm -rf /etc/nginx/sites-enabled/default
 
-# Add configuration files
-ADD php.ini /etc/php5/fpm/conf.d/40-custom.ini
+ADD start.sh /opt/bin/start.sh
+RUN chmod u=rwx /opt/bin/start.sh
 
-# Expose volumes
 VOLUME ["/var/www", "/etc/nginx/sites-enabled"]
 
 EXPOSE 80
 
 WORKDIR /var/www
 
-CMD service php5-fpm start && nginx
+ENTRYPOINT ["/opt/bin/start.sh"]
