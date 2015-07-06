@@ -3,14 +3,14 @@ FROM ubuntu:trusty
 MAINTAINER Ewan Valentine <ewan@theladbible.com>
 
 # Install Nginx.
-RUN \
-  apt-get install -y software-properties-common && \
-  add-apt-repository -y ppa:nginx/stable && \
-  apt-get update && \
-  apt-get install -y nginx && \
-  rm -rf /var/lib/apt/lists/* && \
-  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
-  chown -R www-data:www-data /var/lib/nginx
+RUN apt-get update -y && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository -y ppa:nginx/stable && \
+    apt-get update && \
+    apt-get install -y nginx && \
+    rm -rf /var/lib/apt/lists/* && \
+    echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
+    chown -R www-data:www-data /var/lib/nginx
 
 # Only use stable sources
 RUN rm -rf /etc/apt/sources.list.d/proposed.list
