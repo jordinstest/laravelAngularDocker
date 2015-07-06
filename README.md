@@ -10,7 +10,7 @@ The first time you want to run the application, use the install script:
 
 This will install boot2docker and docker-compose (if not already installed locally) and will set up the containers and run the necessary dependency installs / migrations.
 
-To stop the vm/docker: `sh down.sh`
+To stop the vm/docker: `sh down.sh`    
 To start the vm/docker: `sh up.sh`
 
 ###Set up your vhosts
