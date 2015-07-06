@@ -10,7 +10,7 @@ Make sure you have a CoreOS VM or on OSX boot2docker installed and running. Also
 1. docker-compose build
 2. docker-compose up
 3. cp -r www/api/.env.example www/api/.env
-4. docker-compose run webserver bash -c "cd api && php artisan migrate && composer update"
+4. docker-compose run composer install && docker-compose run artisan migrate
 
 Set up your vhosts:
 
