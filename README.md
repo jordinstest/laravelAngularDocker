@@ -21,8 +21,4 @@ Set up your vhosts:
 192.168.59.103 frontend.test.com
 ```
 
-### Bonus shit
-
-I've written a small nodejs wrapper for executing Laravel commands within the webserver container. Simply run ```sudo npm install -g```. Now run ```laradock -C webserver -c php artisan migrate```. Currently the response from Docker doesn't output, I'll fix that at some point. 
-
 Visit http://ewanvalentine.io/running-laravel-and-angularjs-on-docker/ for more info. 

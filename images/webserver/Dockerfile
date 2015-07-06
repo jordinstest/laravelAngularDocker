@@ -37,6 +37,6 @@ VOLUME ["/var/www", "/etc/nginx/sites-enabled"]
 
 EXPOSE 80
 
-WORKDIR /var/www
+WORKDIR /opt/bin
 
 ENTRYPOINT ["/opt/bin/start.sh"]
