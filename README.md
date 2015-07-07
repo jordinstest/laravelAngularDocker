@@ -4,15 +4,16 @@
 
 ### Getting started
 
-#### Requirements 
-Make sure you have a CoreOS VM or on OSX boot2docker installed and running. Also make sure you have docker-compose installed. 
+The first time you want to run the application, use the install script:    
 
-1. docker-compose build
-2. docker-compose up
-3. cp -r www/api/.env.example www/api/.env
-4. docker-compose run composer install && docker-compose run artisan migrate
+`sudo sh install.sh`    
 
-Set up your vhosts:
+This will install boot2docker and docker-compose (if not already installed locally) and will set up the containers and run the necessary dependency installs / migrations.
+
+To stop the vm/docker: `sh down.sh`    
+To start the vm/docker: `sh up.sh`
+
+###Set up your vhosts
 
 ```
 # Test Project
@@ -21,4 +22,4 @@ Set up your vhosts:
 192.168.59.103 frontend.test.com
 ```
 
-Visit http://ewanvalentine.io/running-laravel-and-angularjs-on-docker/ for more info. 
+Visit http://ewanvalentine.io/running-laravel-and-angularjs-on-docker/ for more info.
