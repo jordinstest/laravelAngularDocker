@@ -42,20 +42,20 @@ artisan:
 apidata:
   image: busybox
   volumes:
-    - "sites/api/api.conf:/etc/nginx/sites-enabled/api.conf"
-    - "www/api/:/var/www/api/"
+    - "./sites/api/api.conf:/etc/nginx/sites-enabled/api.conf"
+    - "./www/api/:/var/www/api/"
 
 admindata:
   image: busybox
   volumes:
-    - "sites/admin/admin.conf:/etc/nginx/sites-enabled/admin.conf"
-    - "www/admin/:/var/www/admin/"
+    - "./sites/admin/admin.conf:/etc/nginx/sites-enabled/admin.conf"
+    - "./www/admin/:/var/www/admin/"
 
 frontenddata:
   image: busybox
   volumes:
-    - "sites/frontend/frontend.conf:/etc/nginx/sites-enabled/frontend.conf"
-    - "www/frontend/:/var/www/frontend/"
+    - "./sites/frontend/frontend.conf:/etc/nginx/sites-enabled/frontend.conf"
+    - "./www/frontend/:/var/www/frontend/"
 
 mysql:
   image: tutum/mysql
