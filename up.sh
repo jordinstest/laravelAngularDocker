@@ -1,7 +1,7 @@
 # BOOT VM
 echo "Booting virtual machine"
-boot2docker up
-eval "$(boot2docker shellinit)"
+#boot2docker up
+#eval "$(boot2docker shellinit)"
 
 # RUN CONTAINERS
 echo "Running containers"

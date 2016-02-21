@@ -1,22 +1,22 @@
 # INSTALL BOOT2DOCKER
-if ! type "boot2docker" > /dev/null; then
-    echo "Downloading boot2docker"
-    curl -L# https://github.com/boot2docker/osx-installer/releases/download/v1.7.0/Boot2Docker-1.7.0.pkg > b2d.pkg
+#if ! type "boot2docker" > /dev/null; then
+#    echo "Downloading boot2docker"
+#    curl -L# https://github.com/boot2docker/osx-installer/releases/download/v1.7.0/Boot2Docker-1.7.0.pkg > b2d.pkg
 
-    echo "Installing boot2docker"
-    sudo installer -pkg b2d.pkg -target /
-    rm -rf b2d.pkg
+#    echo "Installing boot2docker"
+#    sudo installer -pkg b2d.pkg -target /
+#    rm -rf b2d.pkg
 
-    echo "Creating virtual machine"
-    boot2docker init
-else
-    echo "boot2docker already installed"
-fi
+#    echo "Creating virtual machine"
+#    boot2docker init
+#else
+#    echo "boot2docker already installed"
+#fi
 
 # BOOT VM
-echo "Booting virtual machine"
-boot2docker up
-eval "$(boot2docker shellinit)"
+#echo "Booting virtual machine"
+#boot2docker up
+#eval "$(boot2docker shellinit)"
 
 # INSTALL DOCKER-COMPOSE
 if ! type "docker-compose" > /dev/null; then
