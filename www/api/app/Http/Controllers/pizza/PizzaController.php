@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \App\Models\Pizza;
-
+use \Log;
 
 
 
@@ -106,6 +106,13 @@ class PizzaController extends Controller
         $pizza = new Pizza;
         $pizza->id = $id;
         $storedPizza = $pizza->find($id);
-        $storedPizza->delete();
+
+        if (!is_null($storedPizza)) {
+            Log::debug('Going to delete pizza with id: '.$storedPizza->id);
+            $storedPizza->delete();
+        } else {
+            Log::error("DELETE_PIZZA_ERROR: Can't delete pizza with id ".$pizza->id . " , because it doesn't exist");
+            return response()->json(['DELETE_PIZZA_ERROR' => 'Can not delete pizza'], 404);
+        }
     }
 }
