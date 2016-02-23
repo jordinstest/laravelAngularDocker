@@ -5,4 +5,5 @@ Route::get('/', function () {
 });
 
 Route::resource('pizza', 'pizza\PizzaController');
+Route::resource('ingredient', 'pizza\IngredientController');
 
