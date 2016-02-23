@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \App\Models\Pizza;
+use \App\Models\Ingredient;
 use \Log;
 
 
@@ -48,7 +49,14 @@ class PizzaController extends Controller
         $pizza = new Pizza;
         $pizza->name = $name;
         $pizza->save();
-        return response()->json($pizza->name);
+
+        $ingredients = $request->input('ingredients');
+
+        foreach($ingredients as $ingredient) {
+            $pizza->ingredients()->attach($ingredient["id"], array("quantity"=>$ingredient["quantity"]));
+        }
+
+        return response()->json($pizza);
     }
 
     /**
@@ -92,6 +100,18 @@ class PizzaController extends Controller
         $storedPizza->name = $newName;
         $storedPizza->save();
 
+        $ingredients = $request->input('ingredients');
+
+        $preparedIngredientData = array();
+
+        foreach($ingredients as $ingredient) {
+            $key = $ingredient["id"];
+            $asd = array($key => array( 'quantity' => $ingredient["quantity"]));
+            $preparedIngredientData += $asd;
+        }
+
+        $storedPizza->ingredients()->sync($preparedIngredientData);
+
         return response()->json($storedPizza);
     }
 
@@ -109,6 +129,7 @@ class PizzaController extends Controller
 
         if (!is_null($storedPizza)) {
             Log::debug('Going to delete pizza with id: '.$storedPizza->id);
+            $storedPizza->ingredients()->detach();
             $storedPizza->delete();
         } else {
             Log::error("DELETE_PIZZA_ERROR: Can't delete pizza with id ".$pizza->id . " , because it doesn't exist");
