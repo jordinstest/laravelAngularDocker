@@ -1,9 +1,15 @@
 <?php
+use App\Http\Middleware;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('pizza', 'pizza\PizzaController');
-Route::resource('ingredient', 'pizza\IngredientController');
+
+Route::group(['middleware' => 'cors'], function()
+{
+    Route::resource('pizza', 'pizza\PizzaController');
+    Route::resource('ingredient', 'pizza\IngredientController');
+});
+
 
