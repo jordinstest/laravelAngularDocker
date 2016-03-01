@@ -22,4 +22,17 @@ To start the vm/docker: `sh up.sh`
 192.168.59.103 frontend.test.com
 ```
 
-Visit http://ewanvalentine.io/running-laravel-and-angularjs-on-docker/ for more info.
+
+### Run frontend tests
+```
+cd www/frontend
+karma start
+```
+
+
+### Run backend tests
+```
+docker exec -it $WORKER_ID /bin/bash
+./phpunit --bootstrap /var/www/api/bootstrap/autoload.php /var/www/api/tests/component/IngredientTest.php
+```
+
