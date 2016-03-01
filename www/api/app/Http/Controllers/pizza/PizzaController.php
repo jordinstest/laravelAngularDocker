@@ -42,7 +42,7 @@ class PizzaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|min:1|max:255',
         ]);
         $name = $request->input('name');
 
