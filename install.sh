@@ -43,6 +43,12 @@ docker-compose run artisan migrate
 # INSERT DATA INTO DATABASE
 docker-compose run artisan db:seed
 
+#GENERATE CIPHER KEY
+docker-compose run artisan key:generate
+
+# APPLY PERMISSIONS FOR DEVELOPMENT
+cd www/api && sudo chmod -R 777 storage && sudo chmod -R 777 bootstrap/cache && cd -
+
 # RUN CONTAINERS
 echo "Running containers"
 docker-compose up -d
