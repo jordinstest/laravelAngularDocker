@@ -53,8 +53,10 @@ class PizzaController extends Controller
         $ingredients = $request->input('ingredients');
 
         foreach($ingredients as $ingredient) {
-            $pizza->ingredients()->attach($ingredient["id"], array("quantity"=>$ingredient["quantity"]));
+            $pizza->ingredients()->attach($ingredient["ingredient_id"], array("quantity"=>$ingredient["quantity"]));
         }
+
+        $this->removePivotInfo($pizza);
 
         return response()->json($pizza);
     }
@@ -67,10 +69,10 @@ class PizzaController extends Controller
      */
     public function show($id)
     {
-        $pizza = new Pizza;
-        $pizza->id = $id;
-        $storedPizza = $pizza->find($id);
-        return response()->json($storedPizza);
+        $pizza = Pizza::with('ingredients')->find($id);
+        $this->removePivotInfo($pizza);
+
+        return response()->json($pizza);
     }
 
     /**
@@ -101,17 +103,19 @@ class PizzaController extends Controller
         $storedPizza->save();
 
         $ingredients = $request->input('ingredients');
-
+        if(count($ingredients) <= 0) {
+            $ingredients = array();
+        }
         $preparedIngredientData = array();
 
         foreach($ingredients as $ingredient) {
-            $key = $ingredient["id"];
-            $asd = array($key => array( 'quantity' => $ingredient["quantity"]));
-            $preparedIngredientData += $asd;
+            $key = $ingredient["ingredient_id"];
+            $preparedIngredientItem = array($key => array( 'quantity' => $ingredient["quantity"]));
+            $preparedIngredientData += $preparedIngredientItem;
         }
 
         $storedPizza->ingredients()->sync($preparedIngredientData);
-
+        $this->removePivotInfo($storedPizza);
         return response()->json($storedPizza);
     }
 
@@ -134,6 +138,12 @@ class PizzaController extends Controller
         } else {
             Log::error("DELETE_PIZZA_ERROR: Can't delete pizza with id ".$pizza->id . " , because it doesn't exist");
             return response()->json(['DELETE_PIZZA_ERROR' => 'Can not delete pizza'], 404);
+        }
+    }
+
+    protected function removePivotInfo($pizza) {
+        foreach($pizza->ingredients as $ingredient) {
+            unset($ingredient->pivot);
         }
     }
 }
