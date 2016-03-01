@@ -10,6 +10,8 @@ class Pizza extends Model
     protected $fillable = ['name'];
 
     public function ingredients() {
-        return $this->belongsToMany('App\Models\Ingredient', 'pizza_ingredient')->withPivot("quantity");
+        $dbModel = $this->belongsToMany('App\Models\Ingredient', 'pizza_ingredient')->withPivot("quantity")
+                        ->select("pizza_ingredient.ingredient_id", "pizza_ingredient.quantity");
+        return $dbModel;
     }
 }
