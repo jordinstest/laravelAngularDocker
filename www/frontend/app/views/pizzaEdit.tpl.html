@@ -6,8 +6,17 @@
 
 <div class="navbar-form navbar-left">
     <div class="row">
-        <h4>Pizza name</h4>
-        <input ng-model="pizza.name" value="{{pizza.name}}" placeholder="Add a pizza name" class="form-control">
+            <ng-form name="pizzaForm">
+                <h4>Pizza name</h4>
+                <input ng-model="pizza.name" value="{{pizza.name}}" placeholder="Add a pizza name" name="pizzaname"
+                       class="form-control"
+                       ng-maxlength="255"
+                       required
+                >
+                <p class="alert alert-danger help-block" ng-show="pizzaForm.pizzaname.$dirty && pizzaForm.pizzaname.$invalid">Pizza names length must be from 0 to 255 characters</p>
+
+
+            </ng-form>
     </div>
     <div class="row">
         <h4>Ingredients List</h4>
@@ -33,7 +42,9 @@
                 </li>
             </ul>
 
-            <button ng-click="save()" class="btn btn-primary">Save</button>
+            <button ng-click="save()" class="btn btn-primary" ng-disabled="!pizzaForm.$valid">
+                Save
+            </button>
         </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ pizzappControllers.controller('PizzaEditCtrl', function ($scope, $routeParams, $
         if(!pizzaId || pizzaId < 1) {
 
             $scope.pizza = new Pizza ();
-            $scope.pizza.name = 'New pizza name';
+            $scope.pizza.name = '';
             $scope.pizza.ingredients = [];
 
         } else {
