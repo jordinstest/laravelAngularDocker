@@ -69,7 +69,7 @@ class PizzaController extends Controller
      */
     public function show($id)
     {
-        $pizza = Pizza::with('ingredients')->find($id);
+        $pizza = Pizza::with('ingredients')->findOrFail($id);
         $this->removePivotInfo($pizza);
 
         return response()->json($pizza);
@@ -101,7 +101,7 @@ class PizzaController extends Controller
 
         $pizza = new Pizza;
         $pizza->id = $id;
-        $storedPizza = $pizza->find($id);
+        $storedPizza = $pizza->findOrFail($id);
         $storedPizza->name = $newName;
         $storedPizza->save();
 
