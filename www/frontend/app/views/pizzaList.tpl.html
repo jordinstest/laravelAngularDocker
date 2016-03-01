@@ -1,0 +1,12 @@
+<h1>Pizzas App</h1>
+<div>
+
+    <ul>
+        <li ng-repeat="pizza in pizzas">
+            <a ng-click="editPizza(pizza)">{{pizza.name}}</a>
+        </li>
+    </ul>
+
+    <button ng-click="editPizza()">New Pizza</button>
+
+</div>

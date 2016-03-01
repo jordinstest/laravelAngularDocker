@@ -1,0 +1,23 @@
+<a href="#/pizzas">< Home</a>
+
+<div>
+    <input ng-model="pizza.name" value="{{pizza.name}}">
+    <div>Ingredients List</div>
+    <ul>
+        <li ng-repeat="ingredient in ingredientsList">
+            <input type="checkbox" name="ingredientName" ng-model="ingredient.selected">{{ingredient.name}}
+        </li>
+    </ul>
+
+    <button ng-click="addIngredientsToPizza(ingredientsList)">Add</button>
+
+    <div>Pizza ingredients</div>
+    <ul>
+        <li ng-repeat="ingredient in pizza.ingredients">
+            <span>{{ingredient.quantity}}</span>
+            <span>{{ingredient.name}}</span>
+        </li>
+    </ul>
+
+    <button ng-click="save()">Save</button>
+</div>

@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html  ng-app="pizzapp">
 	<head>
-		<title>Frontend</title>
+		<title>Pizzas App</title>
 
 		<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
 	</head>
 	<body>
-		<h1>Frontend</h1>
-
-		<script src="./bower_components/angularjs/angular.min.js"></script>
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="./bower_components/angular/angular.js"></script>
+		<script src="./bower_components/angular-route/angular-route.min.js"></script>
+		<script src="./bower_components/angular-resource/angular-resource.min.js"></script>
 		<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<script src="app/app.js"></script>
+		<script src="app/controllers/PizzaListCtrl.js"></script>
+		<script src="app/controllers/PizzaEditCtrl.js"></script>
+		<script src="app/services/pizzaService.js"></script>
+
+		<script src="app/services/ingredientsService.js"></script>
+
+		<div ng-view>
+
+		</div>
 	</body>
 </html>
