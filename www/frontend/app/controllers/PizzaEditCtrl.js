@@ -39,6 +39,8 @@ pizzappControllers.controller('PizzaEditCtrl', function ($scope, $routeParams, $
                }
            }
         });
+
+        unselectIngredientsList();
     };
 
 

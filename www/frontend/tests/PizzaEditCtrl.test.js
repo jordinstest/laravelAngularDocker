@@ -71,9 +71,15 @@ suite('PizzaEditCtrl', function(){
         });
 
         suite('addIngredientsToPizza', function () {
-            test('when called should add the selected ingredients to the pizza ingredients', function () {
+            function prepareAddIngredients() {
                 var pizzaIngredients = createFakeIngredientsList();
+                $scope.ingredientsList = pizzaIngredients;
                 $scope.pizza = createFakePizza();
+                return pizzaIngredients;
+            }
+
+            test('when called should add the selected ingredients to the pizza ingredients', function () {
+                var pizzaIngredients = prepareAddIngredients();
                 pizzaIngredients[0].selected = true;
                 $scope.addIngredientsToPizza(pizzaIngredients);
 
@@ -82,14 +88,14 @@ suite('PizzaEditCtrl', function(){
             });
 
             test('when called with new ingredients should add the selected ingredients to the pizza ingredients', function () {
-                var pizzaIngredients = createFakeIngredientsList();
-                $scope.pizza = createFakePizza();
+                var pizzaIngredients = prepareAddIngredients();
                 pizzaIngredients[2].selected = true;
                 $scope.addIngredientsToPizza(pizzaIngredients);
 
                 var expectedPizzaIng = [{ingredient_id: 2, quantity: 3}, {ingredient_id: 1, quantity: 5}, {ingredient_id: 3, name: 'carxofa', quantity: 1}];
                 assert.deepEqual($scope.pizza.ingredients, expectedPizzaIng);
             });
+
         });
 
     });
