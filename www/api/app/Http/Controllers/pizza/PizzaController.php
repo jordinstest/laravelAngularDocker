@@ -95,6 +95,9 @@ class PizzaController extends Controller
     public function update(Request $request, $id)
     {
         $newName = $request->input('name');
+        $this->validate($request, [
+            'name' => 'required|min:1|max:255',
+        ]);
 
         $pizza = new Pizza;
         $pizza->id = $id;
