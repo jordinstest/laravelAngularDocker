@@ -1,23 +1,39 @@
-<a href="#/pizzas">< Home</a>
+<div class="">
+    <div class="row">
+        <a href="#/pizzas" class="label label-default">< Home</a>
+    </div>
+</div>
 
-<div>
-    <input ng-model="pizza.name" value="{{pizza.name}}">
-    <div>Ingredients List</div>
-    <ul>
-        <li ng-repeat="ingredient in ingredientsList">
-            <input type="checkbox" name="ingredientName" ng-model="ingredient.selected">{{ingredient.name}}
-        </li>
-    </ul>
+<div class="navbar-form navbar-left">
+    <div class="row">
+        <h4>Pizza name</h4>
+        <input ng-model="pizza.name" value="{{pizza.name}}" placeholder="Add a pizza name" class="form-control">
+    </div>
+    <div class="row">
+        <h4>Ingredients List</h4>
+        <ul>
+            <li ng-repeat="ingredient in ingredientsList">
+                <input class="checkbox checkbox-primary" type="checkbox" name="ingredientName" ng-model="ingredient.selected"> {{ingredient.name}}
+            </li>
+        </ul>
 
-    <button ng-click="addIngredientsToPizza(ingredientsList)">Add</button>
+        <button ng-click="addIngredientsToPizza(ingredientsList)" class="btn btn-sm btn-primary">
+            Add
+        </button>
+    </div>
 
-    <div>Pizza ingredients</div>
-    <ul>
-        <li ng-repeat="ingredient in pizza.ingredients">
-            <span>{{ingredient.quantity}}</span>
-            <span>{{ingredient.name}}</span>
-        </li>
-    </ul>
+    <div class="row">
+        <div >
 
-    <button ng-click="save()">Save</button>
+            <h4>Pizza ingredients</h4>
+            <ul class="jumbotron">
+                <li ng-repeat="ingredient in pizza.ingredients">
+                    <span>{{ingredient.quantity}}</span>
+                    <span>{{ingredient.name}}</span>
+                </li>
+            </ul>
+
+            <button ng-click="save()" class="btn btn-primary">Save</button>
+        </div>
+    </div>
 </div>
