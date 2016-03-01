@@ -40,6 +40,9 @@ docker-compose run composer install
 # RUN MIGRATIONS
 docker-compose run artisan migrate
 
+# INSERT DATA INTO DATABASE
+docker-compose run artisan db:seed
+
 # RUN CONTAINERS
 echo "Running containers"
 docker-compose up -d
